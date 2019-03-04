@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Game - Integration Example</title>
+</head>
+
+<body style="margin:0; padding:0;">
+  <h1 id="loading">Loading...</h1>
+
+  <form style="width:80%;margin: 0 auto;">
+    <button id='startSessionBtn' type="button" class="btn btn-default">startSession</button>
+    <button id='endSessionBtn' type="button" class="btn btn-default">endSession</button>
+  </form>
+
+  <script>
+    var start = Date.now();
+    var end = 0;
+    var startBtn = document.querySelector('#startSessionBtn');
+    var endBtn = document.querySelector('#endSessionBtn');
+
+    GamifiveSDK.init({ lite: false, menuPosition: 'BOTTOM_LEFT' })
+      .then(function afterInit() {
+        end = Date.now();
+        var initTime = end - start;
+        document.querySelector('#loading').innerHTML = 'Init finished: ' + (initTime / 1000) + 's';
+      });
+
+    GamifiveSDK.onStartSession(function () {
+      startBtn.disabled = true;
+    });
+
+    startBtn.addEventListener('click', function () {
+      GamifiveSDK.startSession();
+      startBtn.disabled = true;
+    });
+
+    endBtn.addEventListener('click', function () {
+      var randomScore = Math.floor(Math.random() * 1000);
+      GamifiveSDK.endSession({ score: randomScore, level: 5 });
+      startBtn.disabled = false;
+    });
+  </script>
+</body>
+
+</html>
