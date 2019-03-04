@@ -1,0 +1,27 @@
+{
+  "name": "sdk-dev-env",
+  "version": "1.0.0",
+  "description": "sdk development env",
+  "main": "app.js",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "debug": "DEBUG=express-http-proxy node app.js"
+  },
+  "author": "Docomo Digital",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-http-proxy": "^1.5.1",
+    "http": "0.0.0",
+    "pug": "^2.0.3",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
