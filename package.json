@@ -1,14 +1,12 @@
 {
-  "name": "sdk-dev-env",
+  "name": "sdk-integration-env",
   "version": "1.0.0",
-  "description": "sdk development env",
+  "description": "sdk integration env",
   "main": "app.js",
   "license": "ISC",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "node app.js",
-    "debug": "DEBUG=express-http-proxy node app.js"
+    "start": "node app.js"
   },
   "author": "Docomo Digital",
   "dependencies": {
