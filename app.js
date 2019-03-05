@@ -7,7 +7,8 @@ var app = require('express')(),
     fs = require('fs'),
     axios = require('axios'),
     proxy = require('express-http-proxy'),
-    utils = require('./utils.js');
+    utils = require('./utils.js'),
+    objectMerge = require('object-merge'),
     config = require('./config.js');
 
 
@@ -70,6 +71,19 @@ app.get('/', function (req, res) {
 
 })
 
+app.get('/build/:game', function (req, res) {
+  fs.readFile(path.join(__dirname, 'public/games/'+req.params.game+'/index.html'), 'utf8', function(err, data) {
+    
+    var headTagPos=data.indexOf('<head>')+6;
+    data=data.slice(0, headTagPos) + '<script id="gfsdk"></script>'+ data.slice(headTagPos);
+
+    
+    res.setHeader('Content-Disposition', 'attachment; filename=index.html');
+    res.setHeader('Content-Type', 'application/octet-stream');
+    res.send(new Buffer(data));
+  });
+});
+
 
 app.get('/run/:game', function (req, res) {
 
@@ -78,6 +92,10 @@ app.get('/run/:game', function (req, res) {
 
   Promise.all([vhostReq, dictionaryReq]).then(function(result) {
     
+    result[0].data = objectMerge(result[0].data, config.vhost);
+    result[1].data = objectMerge(result[1].data, config.dictionary);
+
+
     var gameApi = utils.dequeryfy(result[0].data.MOA_API_CONTENTS_GAMEINFO);
     const toRetain = ['country', 'fw', 'lang', 'real_customer_id', 'vh', 'white_label'];
 

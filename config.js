@@ -1,10 +1,10 @@
 exports.generic = {
     "service": "SDK-DEV-ENV",
-    "local_domain":"local.www2.gameasy.com",
+    "local_domain":"local.www.gameasy.com",
     "domain": "www.gameasy.it",
     "port": "8080",
     "sdk_vendor":"http://localhost:9090/vendor.9b94e.min.js",
-    "sdk":"http://localhost:9090/gfsdk.97ff4.min.js",
+    "sdk":"http://localhost:9090/gfsdk.fa3bb.min.js",
     "newton":"http://static.newton.pm/js/v2.x/newton.min.js"
 }
 
@@ -16,3 +16,9 @@ exports.user = {
 exports.game = {
     "content_id": "4de756a55ac71f45c5b7b4211b71219e",
 }
+
+exports.vhost = {
+    "NEWTON_SECRETID": "f$xC_L3RwY&h8kraC&!o",
+}
+
+exports.dictionary = {}
