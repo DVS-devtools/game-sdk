@@ -98,7 +98,7 @@ app.get('/run/:game', function (req, res) {
     
     config.vhost = objectMerge(result[0].data, config.vhost);
     config.dictionary = objectMerge(result[1].data, config.dictionary);
-    config.vhost.NEWTON_SECRETID=config.vhost.GFSDK_INT_ENV_NEWTON_SECRETID;
+    config.vhost.NEWTON_SECRETID=config.vhost.NEWTON_SECRETID_devel;
 
     var gameApi = utils.dequeryfy(result[0].data.MOA_API_CONTENTS_GAMEINFO);
     const toRetain = ['country', 'fw', 'lang', 'real_customer_id', 'vh', 'white_label'];
