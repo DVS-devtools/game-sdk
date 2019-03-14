@@ -14,9 +14,5 @@ exports.user = {
     "type": "premium"
 }
 
-exports.vhost = {
-    "GFSDK_INT_ENV_NEWTON_SECRETID": "f$xC_L3RwY&h8kraC&!o",
-    "GFSDK_INT_ENV_CONTENT_ID": "4de756a55ac71f45c5b7b4211b71219e"
-}
-
+exports.vhost = {}
 exports.dictionary = {}

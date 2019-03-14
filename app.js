@@ -17,7 +17,7 @@ app.use(express.static('public'));
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.listen(config.generic.port, function () {
-  console.log('SDK-DEV-ENV running: http://localhost:'+config.generic.port);
+  console.log('SDK-DEV-ENV running: http://'+config.generic.local_domain+':'+config.generic.port);
 })
 
 var proxy = proxy(config.generic.domain, {
@@ -93,7 +93,6 @@ app.get('/run/:game', function (req, res) {
 
   var user_id=md5('user-'+req.params.game);
   var content_id=md5('game-'+req.params.game);
-  console.log(user_id,content_id);
 
   Promise.all([vhostReq, dictionaryReq]).then(function(result) {
     
