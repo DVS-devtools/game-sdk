@@ -3,22 +3,20 @@ exports.generic = {
     "local_domain":"local.www.gameasy.com",
     "domain": "www.gameasy.it",
     "port": "8080",
-    "sdk_vendor":"http://localhost:9090/vendor.9b94e.min.js",
-    "sdk":"http://localhost:9090/gfsdk.fa3bb.min.js",
+
+
+    "sdk_vendor":"http://s.motime.com/js/wl/webstore_html5game/gfsdk/3.x.x/dist/vendor.9b94e.min.js?v=20190311110622",
+    "sdk":"http://s.motime.com/js/wl/webstore_html5game/gfsdk/3.x.x/dist/gfsdk.9c3d8.min.js?cache=false&v=20190311110622",
     "newton":"http://static.newton.pm/js/v2.x/newton.min.js"
 }
 
 exports.user = {
-    "type": "premium",
-    "id": "998092f8fcde11e69430005056b60712",
-}
-
-exports.game = {
-    "content_id": "4de756a55ac71f45c5b7b4211b71219e",
+    "type": "premium"
 }
 
 exports.vhost = {
-    "NEWTON_SECRETID": "f$xC_L3RwY&h8kraC&!o",
+    "GFSDK_INT_ENV_NEWTON_SECRETID": "f$xC_L3RwY&h8kraC&!o",
+    "GFSDK_INT_ENV_CONTENT_ID": "4de756a55ac71f45c5b7b4211b71219e"
 }
 
 exports.dictionary = {}

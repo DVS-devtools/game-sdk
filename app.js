@@ -9,6 +9,7 @@ var app = require('express')(),
     proxy = require('express-http-proxy'),
     utils = require('./utils.js'),
     objectMerge = require('object-merge'),
+    md5 = require('md5'),
     config = require('./config.js');
 
 
@@ -31,10 +32,10 @@ var proxy = proxy(config.generic.domain, {
           data.user = null;
           data.subscribed = false;
         } else if (config.user.type === 'free') {
-          data.user = config.user.id;
+          data.user = global.user_id;
           data.subscribed = false;
         } else if (config.user.type === 'premium') {
-          data.user = config.user.id;
+          data.user = global.user_id;
           data.subscribed = true;
         }
         return JSON.stringify(data);
@@ -90,11 +91,15 @@ app.get('/run/:game', function (req, res) {
   var vhostReq = axios.get('http://'+config.generic.domain+'/v01/config.getvars?keys=poggioacaiano');
   var dictionaryReq = axios.get('http://'+config.generic.domain+'/dictionary');
 
+  var user_id=md5('user-'+req.params.game);
+  var content_id=md5('game-'+req.params.game);
+  console.log(user_id,content_id);
+
   Promise.all([vhostReq, dictionaryReq]).then(function(result) {
     
-    result[0].data = objectMerge(result[0].data, config.vhost);
-    result[1].data = objectMerge(result[1].data, config.dictionary);
-
+    config.vhost = objectMerge(result[0].data, config.vhost);
+    config.dictionary = objectMerge(result[1].data, config.dictionary);
+    config.vhost.NEWTON_SECRETID=config.vhost.GFSDK_INT_ENV_NEWTON_SECRETID;
 
     var gameApi = utils.dequeryfy(result[0].data.MOA_API_CONTENTS_GAMEINFO);
     const toRetain = ['country', 'fw', 'lang', 'real_customer_id', 'vh', 'white_label'];
@@ -107,13 +112,16 @@ app.get('/run/:game', function (req, res) {
       }, {});
 
     var gameReq = result[0].data.MOA_API_CONTENTS_GAMEINFO.split('?')[0];
-    axios.get(gameReq, { params: { content_id: config.game.content_id, ...filteredQuery} })
+    axios.get(gameReq, { params: { content_id: config.vhost.GFSDK_INT_ENV_CONTENT_ID, ...filteredQuery} })
       .then(function(game){
+
+        // override game id
+        game.data.id=content_id;
 
         fs.readFile(path.join(__dirname, 'public/games/'+req.params.game+'/index.html'), 'utf8', function(err, data) {
     
           var headTagPos=data.indexOf('<head>')+6;
-          data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(result[0].data)+';var GFSDK_DICTIONARY = '+JSON.stringify(result[1].data)+';var GamifiveInfo = {game:'+JSON.stringify(game.data)+'}</script><script src="'+config.generic.sdk_vendor+'"></script><script src="'+config.generic.sdk+'"></script>' + data.slice(headTagPos);
+          data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {game:'+JSON.stringify(game.data)+'}</script><script src="'+config.generic.sdk_vendor+'"></script><script src="'+config.generic.sdk+'"></script>' + data.slice(headTagPos);
       
           res.format({
             html: function(){
