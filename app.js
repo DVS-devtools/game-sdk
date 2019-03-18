@@ -118,15 +118,19 @@ app.get('/run/:game', function (req, res) {
         game.data.id=content_id;
 
         fs.readFile(path.join(__dirname, 'public/games/'+req.params.game+'/index.html'), 'utf8', function(err, data) {
-    
-          var headTagPos=data.indexOf('<head>')+6;
-          data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {game:'+JSON.stringify(game.data)+'}</script><script src="'+config.generic.sdk_vendor+'"></script><script src="'+config.generic.sdk+'"></script>' + data.slice(headTagPos);
-      
-          res.format({
-            html: function(){
-              res.send(data);
-            },
-          });
+
+          if(typeof data !=='undefined'){
+            var headTagPos=data.indexOf('<head>')+6;
+            data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {game:'+JSON.stringify(game.data)+'}</script><script src="'+config.generic.sdk_vendor+'"></script><script src="'+config.generic.sdk+'"></script>' + data.slice(headTagPos);
+        
+            res.format({
+              html: function(){
+                res.send(data);
+              },
+            });
+          } else {
+            console.log('path file not found: '+path.join(__dirname, 'public/games/'+req.params.game+'/index.html'))
+          }
         });
 
       })
