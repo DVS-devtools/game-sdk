@@ -72,18 +72,18 @@ app.get('/', function (req, res) {
 
 })
 
-app.get('/build/:game', function (req, res) {
-  fs.readFile(path.join(__dirname, 'public/games/'+req.params.game+'/index.html'), 'utf8', function(err, data) {
+// app.get('/build/:game', function (req, res) {
+//   fs.readFile(path.join(__dirname, 'public/games/'+req.params.game+'/index.html'), 'utf8', function(err, data) {
     
-    var headTagPos=data.indexOf('<head>')+6;
-    data=data.slice(0, headTagPos) + '<script id="gfsdk"></script>'+ data.slice(headTagPos);
+//     var headTagPos=data.indexOf('<head>')+6;
+//     data=data.slice(0, headTagPos) + '<script id="gfsdk"></script>'+ data.slice(headTagPos);
 
     
-    res.setHeader('Content-Disposition', 'attachment; filename=index.html');
-    res.setHeader('Content-Type', 'application/octet-stream');
-    res.send(new Buffer(data));
-  });
-});
+//     res.setHeader('Content-Disposition', 'attachment; filename=index.html');
+//     res.setHeader('Content-Type', 'application/octet-stream');
+//     res.send(new Buffer(data));
+//   });
+// });
 
 
 app.get('/run/:game', function (req, res) {
