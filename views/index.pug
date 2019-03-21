@@ -6,26 +6,26 @@ html(lang='en')
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js", integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o", crossorigin="anonymous")
         link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
+        link(href="/styles/style.min.css", rel="stylesheet")
     body
-        nav(class='navbar navbar-light bg-light')
-            a(class='navbar-brand' href='#') SDK :: INTEGRATION ENV
-
+        nav(class='navbar navbar-light bg-custom')
+            div(class="logo")
+                img(src="/img/icon.svg")
+                <span class="bold">S</span>DK<span class="bold">I</span>NTEGRATION<span class="bold">E</span>NV
 
         div(class="card")
-            div(class="card-header" style="background: black;color: white;") GAMES
-            
-            div(class="row")
-                div(class="col-lg-4")
-                    div(class="card-body")
-                        each game in games
-                            ul(class="list-group")
-                                li(class="list-group-item" style="margin-top:5px;margin-bottom:5px;text-transform:uppercase;")= game
-                                    div(style="float:right;")
-                                        a(href="http://"+config.generic.local_domain+":"+config.generic.port+"/run/"+game) 
-                                            button(type="button" class="btn btn-success") Play
-                                                    
-                                        a(href="http://"+config.generic.local_domain+":"+config.generic.port+"/build/"+game) 
-                                            button(type="button" class="btn btn-warning" title="Build and Download Index file") Build            
-                                    
-            
+            div(class="title")="Your Games"
+               
+            each game, index in games
+                div(class="game")
+                    div(class="icon")
+                        div(class="circle icon_"+(index % 3))
+                            svg(version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve")
+                                path(class="st0" d="M83.2,44.65c-2.64,0-4.77-2.09-4.77-4.68s2.14-4.68,4.77-4.68c2.64,0,4.77,2.09,4.77,4.68S85.83,44.65,83.2,44.65z M74.56,52.83c-2.64,0-4.77-2.09-4.77-4.68c0-2.58,2.14-4.68,4.77-4.68c2.64,0,4.77,2.1,4.77,4.68C79.33,50.74,77.18,52.83,74.56,52.83z M65.9,44.65c-2.64,0-4.76-2.09-4.76-4.68s2.12-4.68,4.76-4.68c2.64,0,4.77,2.09,4.77,4.68S68.54,44.65,65.9,44.65z M74.56,26.81c2.64,0,4.77,2.1,4.77,4.68c0,2.59-2.14,4.68-4.77,4.68c-2.64,0-4.77-2.09-4.77-4.68C69.78,28.91,71.92,26.81,74.56,26.81z M36.91,44.41h-7.24v7.1h-7.24v-7.1h-7.24v-7.1h7.24V30.2h7.24v7.11h7.24V44.41z M95.12,32.22c-0.09-0.25-0.19-0.33-0.3-0.58C92.12,22.52,83.54,16,73.36,16h-46.8C16.22,16,7.5,22.77,4.97,32.16c-0.03,0.06-0.06,0.06-0.09,0.13c-4.99,12.74-6.01,46.23,6.97,51.13c9.56,3.63,24.03-10.6,33.01-21.25h10.29C64.11,72.82,78.59,87,88.16,83.39C101.13,78.51,100.13,44.96,95.12,32.22z")
+                    
+                    div(class="name")= game
+                    div(class="play")
+                        a(href="http://"+config.generic.local_domain+":"+config.generic.port+"/run/"+game)
+                            button(type="button" class="btn btn-play gradient_"+(index % 3)) PLAY                                                    
+                
             

@@ -1,0 +1,139 @@
+// out: ./public/styles/style.min.css, compress: true, sourceMap: false
+
+@font-face {
+    font-family: 'airbnb';
+    src: url('/fonts/AIRBNBCEREAL-LIGHT.TTF');
+}
+
+@font-face {
+    font-family: 'airbnb-bold';
+    src: url('/fonts/AIRBNBCEREAL-BOLD.TTF');
+}
+
+body{
+    font-family: airbnb, Arial, Helvetica, sans-serif;
+    background-color: #222335;
+}
+
+.card{
+    background-color: transparent;
+}
+
+.bg-custom{
+    background-color: #1f1f27;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: thin solid #646161;
+
+}
+
+.navbar-light .navbar-brand {
+    color:#fff;
+}
+
+.title{
+    color:#fff;
+    font-family: airbnb-bold, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    padding: 15px;
+}
+
+.logo{
+    img{
+        height: 35px;
+        margin-right: 12px;
+    }
+    color:#fff;
+    font-size:1.3em;
+    letter-spacing: 0.5px;
+}
+
+.bold{
+    font-family: airbnb-bold, Arial, Helvetica, sans-serif;
+    color:#f3595b;
+}
+
+.btn-play{
+    border-radius: 20px;
+    width: 90px;
+    font-family: airbnb-bold, Arial, Helvetica, sans-serif;
+    color:#fff;
+}
+
+.game{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    height:90px;
+    border-bottom:thin solid #646161;
+    
+    .icon{
+        flex-grow: 1;
+        flex-basis: 10%;
+        margin-top: 17px;
+        padding-left: 10px;
+        
+        img{
+            width:30px;
+        }
+        svg{
+            width:25px;
+        }
+        .circle{
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            padding: 12px;
+        }
+    }
+
+    .name{
+        flex-grow: 2;
+        flex-basis: 60%;
+        font-family: airbnb-bold, Arial, Helvetica, sans-serif;
+        color:#fff;
+        line-height: 85px;
+        padding-left: 14px;
+    }
+    
+    .play{
+        flex-grow: 1;
+        flex-basis: 30%;
+        line-height: 85px;
+    }
+}
+
+.gradient_0{
+    background-image: linear-gradient(120deg, #65A4FE 0%, #4274FB 100%);}
+
+.gradient_1{
+    background-image: linear-gradient(120deg, #ffb633 0%, #ffb633 100%);
+}
+
+.gradient_2{
+    background-image: linear-gradient(120deg, #fe467a 0%, #ea804e 100%);
+}
+
+.icon_0{
+    background-color: #364b69;
+    svg{
+        fill:#65a4fe;
+    }
+}
+
+.icon_1{
+    background-color:#8a6529;
+    svg{
+        fill:#ffaf2f;
+    }
+}
+
+.icon_2{
+    background-color:#884b4a;
+    svg{
+        fill:#f36662;
+    }
+}
