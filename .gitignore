@@ -1,8 +1,8 @@
 yarn-error.log
 node_modules
-!public/
-public/*
 
+public/*
+!public/img
 !public/games
 public/games/*
 
