@@ -32,13 +32,15 @@ var proxy = proxy(config.generic.domain, {
           data.user = null;
           data.subscribed = false;
         } else if (config.user.type === 'free') {
-          data.user = global.user_id;
+          data.user = config.user.user_id || null;
           data.subscribed = false;
         } else if (config.user.type === 'premium') {
-          data.user = global.user_id;
+          data.user = config.user.user_id || null;
           data.subscribed = true;
         }
         return JSON.stringify(data);
+      case "/v01/createpony":
+        return JSON.stringify('{"ponyUrl":"&_PONY=12-8b1d1beaab74f4037a5a793d8c5c80ad999999END","status":"200"}');
       default:
         return proxyResData;
     }
@@ -85,6 +87,7 @@ app.get('/run/:game', function (req, res) {
     config.vhost = objectMerge(result[0].data, config.vhost);
     config.dictionary = objectMerge(result[1].data, config.dictionary);
     config.vhost.NEWTON_SECRETID=config.vhost.NEWTON_SECRETID_devel;
+    config.vhost.MOA_API_CREATEPONY=config.vhost.MOA_API_CREATEPONY.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
 
     var gameApi = utils.dequeryfy(result[0].data.MOA_API_CONTENTS_GAMEINFO);
     const toRetain = ['country', 'fw', 'lang', 'real_customer_id', 'vh', 'white_label'];
