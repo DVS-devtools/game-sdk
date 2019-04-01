@@ -49,7 +49,7 @@ Put the game in game-sdk/public/game/myfolder where myfolder could have any name
 #### Run the local server
 
 ```javascript
-npm run start
+npm start
 ```
 
 Go to <http://local.www.gameasy.com:8080>
