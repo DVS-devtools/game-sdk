@@ -10,5 +10,9 @@ exports.user = {
     "type": "premium"
 }
 
-exports.vhost = {}
+exports.vhost = {
+    GOOGLEPLAY_STORE_URL: undefined,
+    ITUNES_STORE_URL: undefined,
+    INSTALL_HYBRID_VISIBLE: false
+}
 exports.dictionary = {}
