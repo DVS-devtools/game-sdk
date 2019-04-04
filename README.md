@@ -13,6 +13,9 @@
 ### How integrate the SDK on your game
 Follow the simply steps explained below, in 5 minute you are ready to test your game with the SDK integrated! 
 
+![Alt text](public/img/layout.png?raw=true "SDK Env Layout")
+
+
 #### Install node and npm
 
 Probably you already have this installed in your PC/Mac but just in case here are the tutorial to setting up in environment for development:
