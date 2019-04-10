@@ -48,6 +48,7 @@ var proxy = proxy(config.generic.domain, {
   }
 });
 
+app.use('/static_env/*', proxy);
 app.use('/v01/*', proxy);
 app.use('/dictionary', proxy);
 
