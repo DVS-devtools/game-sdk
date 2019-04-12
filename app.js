@@ -10,7 +10,8 @@ var app = require('express')(),
     utils = require('./utils.js'),
     objectMerge = require('object-merge'),
     md5 = require('md5'),
-    config = require('./config.js');
+    config = require('./config.js'),
+    utils = require('./utils.js');
 
 
 app.use(express.static('public'));
@@ -20,11 +21,17 @@ app.listen(config.generic.port, function () {
   console.log('SDK-DEV-ENV running: http://'+config.generic.local_domain+':'+config.generic.port);
 })
 
-var proxy = proxy(config.generic.domain, {
+var proxier = proxy(config.generic.domain, {
+  proxyReqPathResolver: req => {
+    return req.originalUrl;
+  }
+});
+
+var proxyfake = proxy(config.generic.domain, {
   proxyReqPathResolver: req => url.parse(req.baseUrl).path,
   userResDecorator: function(proxyRes, proxyResData, userReq, userRes) {
 
-    switch(userReq.originalUrl){
+    switch(userReq.originalUrl.split('?')[0]){
       case "/v01/user.check":
         data = JSON.parse(proxyResData.toString('utf8'));
 
@@ -32,15 +39,17 @@ var proxy = proxy(config.generic.domain, {
           data.user = null;
           data.subscribed = false;
         } else if (config.user.type === 'free') {
-          data.user = config.user.user_id || null;
+          data.user = config.user.id || null;
           data.subscribed = false;
         } else if (config.user.type === 'premium') {
-          data.user = config.user.user_id || null;
+          data.user = config.user.id || null;
           data.subscribed = true;
         }
         return JSON.stringify(data);
       case "/v01/createpony":
         return JSON.stringify('{"ponyUrl":"&_PONY=12-8b1d1beaab74f4037a5a793d8c5c80ad999999END","status":"200"}');
+      // case "/static_env/lapis/appsran/leaderboard.postScore":
+      //   return {"response":{"error":0,"data":{"top_scorer": [{"player_name": "pla","score": 4179},{"player_name": "gia","score": 324},{"player_name": "daf","score": 287}]}}};
       default:
         return proxyResData;
     }
@@ -48,9 +57,9 @@ var proxy = proxy(config.generic.domain, {
   }
 });
 
-app.use('/static_env/*', proxy);
-app.use('/v01/*', proxy);
-app.use('/dictionary', proxy);
+app.use('/static_env/*', proxier);
+app.use('/v01/*', proxyfake);
+app.use('/dictionary', proxyfake);
 
 
 app.get('/', function (req, res) {
@@ -80,7 +89,7 @@ app.get('/run/:game', function (req, res) {
   var vhostReq = axios.get('http://'+config.generic.domain+'/v01/config.getvars?keys=poggioacaiano');
   var dictionaryReq = axios.get('http://'+config.generic.domain+'/dictionary');
 
-  var user_id=md5('user-'+req.params.game);
+  config.user.id=md5('user-'+req.params.game);
   var content_id=md5('game-'+req.params.game);
 
   Promise.all([vhostReq, dictionaryReq]).then(function(result) {
@@ -89,6 +98,7 @@ app.get('/run/:game', function (req, res) {
     config.dictionary = objectMerge(result[1].data, config.dictionary);
     config.vhost.NEWTON_SECRETID=config.vhost.NEWTON_SECRETID_devel;
     config.vhost.MOA_API_CREATEPONY=config.vhost.MOA_API_CREATEPONY.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
+    config.vhost.MOA_API_LEADERBOARD_POST_SCORE=config.vhost.MOA_API_LEADERBOARD_POST_SCORE.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
 
     var gameApi = utils.dequeryfy(result[0].data.MOA_API_CONTENTS_GAMEINFO);
     const toRetain = ['country', 'fw', 'lang', 'real_customer_id', 'vh', 'white_label'];
@@ -101,7 +111,7 @@ app.get('/run/:game', function (req, res) {
       }, {});
 
     var gameReq = result[0].data.MOA_API_CONTENTS_GAMEINFO.split('?')[0];
-    axios.get(gameReq, { params: { content_id: config.vhost.GFSDK_INT_ENV_CONTENT_ID, ...filteredQuery} })
+    axios.get(utils.protocol(gameReq), { params: { content_id: config.vhost.GFSDK_INT_ENV_CONTENT_ID, ...filteredQuery} })
       .then(function(game){
 
         // override game id
@@ -111,7 +121,7 @@ app.get('/run/:game', function (req, res) {
 
           if(typeof data !=='undefined'){
             var headTagPos=data.indexOf('<head>')+6;
-            data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.GFSDK_VENDOR_URL+'"></script><script src="'+config.vhost.GFSDK_MAIN_URL+'"></script>' + data.slice(headTagPos);
+            data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.GFSDK_VENDOR_URL+'"></script><script src="'+config.vhost.GFSDK_MAIN_URL+'"></script>' + data.slice(headTagPos);
         
             res.format({
               html: function(){

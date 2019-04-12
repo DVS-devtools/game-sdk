@@ -1,4 +1,4 @@
-exports.dequeryfy = function(_url) {
+  exports.dequeryfy = function(_url) {
     const param = decodeURI(_url.slice(0));
   
     const query = param.split('?')[1];
@@ -13,4 +13,8 @@ exports.dequeryfy = function(_url) {
       newObj[key] = value;
       return newObj;
     }, {});
+  }
+  
+  exports.protocol = function(_url) {
+    return (_url.substring(0,2) === '//') ? 'http:'+_url : _url;
   }
