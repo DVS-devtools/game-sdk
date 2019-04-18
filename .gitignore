@@ -7,3 +7,4 @@ public/*
 public/games/*
 
 !public/games/default/
+!public/styles/
