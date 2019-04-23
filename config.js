@@ -7,12 +7,9 @@ exports.generic = {
 }
 
 exports.user = {
-    "type": "premium"
+    "type": "premium",
+    "id": "2879f348359511e7ad1a005056b674fe"
 }
 
-exports.vhost = {
-    GOOGLEPLAY_STORE_URL: undefined,
-    ITUNES_STORE_URL: undefined,
-    INSTALL_HYBRID_VISIBLE: false
-}
+exports.vhost = {}
 exports.dictionary = {}

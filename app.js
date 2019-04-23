@@ -48,8 +48,6 @@ var proxyfake = proxy(config.generic.domain, {
         return JSON.stringify(data);
       case "/v01/createpony":
         return JSON.stringify('{"ponyUrl":"&_PONY=12-8b1d1beaab74f4037a5a793d8c5c80ad999999END","status":"200"}');
-      // case "/static_env/lapis/appsran/leaderboard.postScore":
-      //   return {"response":{"error":0,"data":{"top_scorer": [{"player_name": "pla","score": 4179},{"player_name": "gia","score": 324},{"player_name": "daf","score": 287}]}}};
       default:
         return proxyResData;
     }
@@ -89,7 +87,7 @@ app.get('/run/:game', function (req, res) {
   var vhostReq = axios.get('http://'+config.generic.domain+'/v01/config.getvars?keys=poggioacaiano');
   var dictionaryReq = axios.get('http://'+config.generic.domain+'/dictionary');
 
-  config.user.id=md5('user-'+req.params.game);
+  // config.user.id=md5('user-'+req.params.game);
   var content_id=md5('game-'+req.params.game);
 
   Promise.all([vhostReq, dictionaryReq]).then(function(result) {
@@ -99,6 +97,8 @@ app.get('/run/:game', function (req, res) {
     config.vhost.NEWTON_SECRETID=config.vhost.NEWTON_SECRETID_devel;
     config.vhost.MOA_API_CREATEPONY=config.vhost.MOA_API_CREATEPONY.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
     config.vhost.MOA_API_LEADERBOARD_POST_SCORE=config.vhost.MOA_API_LEADERBOARD_POST_SCORE.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
+    config.vhost.MOA_API_APPLICATION_OBJECTS_SET=config.vhost.MOA_API_APPLICATION_OBJECTS_SET.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
+    config.vhost.MOA_API_APPLICATION_OBJECTS_GET=config.vhost.MOA_API_APPLICATION_OBJECTS_GET.replace(config.generic.domain, config.generic.local_domain+':'+config.generic.port);
 
     var gameApi = utils.dequeryfy(result[0].data.MOA_API_CONTENTS_GAMEINFO);
     const toRetain = ['country', 'fw', 'lang', 'real_customer_id', 'vh', 'white_label'];
