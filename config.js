@@ -11,5 +11,7 @@ exports.user = {
     "id": "2879f348359511e7ad1a005056b674fe"
 }
 
-exports.vhost = {}
+exports.vhost = {
+    "INSTALL_HYBRID_VISIBLE":false
+}
 exports.dictionary = {}
