@@ -121,7 +121,7 @@ app.get('/run/:game', function (req, res) {
 
           if(typeof data !=='undefined'){
             var headTagPos=data.indexOf('<head>')+6;
-            data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.GFSDK_VENDOR_URL+'"></script><script src="'+config.vhost.GFSDK_MAIN_URL+'"></script>' + data.slice(headTagPos);
+            data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.GFSDK_MANIFEST_URL+'"></script><script src="'+config.vhost.GFSDK_VENDOR_URL+'"></script></script><script src="'+config.vhost.GFSDK_MAIN_URL+'"></script>' + data.slice(headTagPos);
         
             res.format({
               html: function(){
