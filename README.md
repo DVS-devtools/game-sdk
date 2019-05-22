@@ -108,7 +108,7 @@ GamifiveSDK.hideMoreGamesButton();
 Before sending the package just remove from the index.html the two scripts needed for testing purpose and include only this tag in your head
 
 ```javascript
-<script id="gfsdk"></script>
+<script id="gfsdk" src="http://s.motime.com/js/wl/webstore_html5game/gfsdk/dist/gfsdk.min.js"></script>
 ```
 
 # Aliases
