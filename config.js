@@ -3,7 +3,8 @@ exports.generic = {
     "local_domain":"local.www.gameasy.com",
     "domain": "www.gameasy.fr",
     "port": "8080",
-    "newton":"http://static.newton.pm/js/v2.x/newton.min.js"
+    "newton":"http://static.newton.pm/js/v2.x/newton.min.js",
+    "gamebox_url":"http://localhost:3001/main.js"
 }
 
 exports.user = {
@@ -12,6 +13,18 @@ exports.user = {
 }
 
 exports.vhost = {
-    "INSTALL_HYBRID_VISIBLE":false
+    "INSTALL_HYBRID_VISIBLE":false,
+    
+    "GAMEBOX_NEWTON_TRACKING":true,
+    "GAMEBOX_GOOGLE_ANALYTICS":true,
+    "GAMEBOX_NAVBAR":true,
+    "GAMEBOX_ALERT":true,
+    "HEADER_JS_GAMEBOX_INDEX":"http://www2.gameasy.it/static_env/js/wl/webstore_gamebox/index.min.js"
 }
 exports.dictionary = {}
+
+exports.gamebox = {
+    module:[
+        'alert'
+    ]
+}

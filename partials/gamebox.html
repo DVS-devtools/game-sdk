@@ -1,0 +1,187 @@
+<style>
+    
+    body{
+        margin:0px;
+    }
+    
+    .d_msg-box{
+    background-color: rgba(255, 255, 255,.5);
+    color: #131722;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000001;
+    padding: 30px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 10px;
+    line-height: 15px;
+    width:190px;
+    font-family: Arial, sans-serif;
+    }
+
+    .d_show{
+        display: block;
+    }
+
+    .d_title{
+    font-weight: bold;
+    margin-top: 20px;
+    }
+    .d_message{
+    margin-top:15px;
+    }
+    .d_navbar{
+    color: #131722;
+    display: block;
+    position: fixed;
+    z-index: 1000001;
+    height: 65px;
+    width: 100%;
+    transition: margin-top 0.3s ease;
+    padding: 0px 5px 10px 0px;
+    margin-top: -50px;
+    left: 0px;
+    }
+    .d_contents{
+    background-color:white;
+    overflow: hidden;
+    height:50px;
+    }
+    .d_navbar.d_open{
+    margin-top:0px;
+    }
+    .d_icon{
+    height:35px;
+    }
+    .d_arrow_area{
+    float:right;
+    text-align: center;
+    width:60px;
+    height:27px;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAbCAYAAAAgVez8AAABUklEQVR42u2VP0jDUBDGv0EHQQcXERV3R2fBxVGcnBzE0dUubro7Cjo4dOkg6OKigobkvUJxseAiKmqT95IupYsggmL986UUJ1GQRtLmPjheSPLu7vcudwGK4XumrHXxkRkTYAEWYAEWYAEWYAEWYAEWYAEWYAGOgZU9ygysthfAoR2ENttdD6vsHtRlP77kVWZ4ArfdV9XwASpYwrdSqgdFu0LweufD2ldWNY+T+yH8qrOoj9A5brId2KcvbNFdOGYCf5Jn5unkmJ9GI+U9WmOeG3Aq42iLSuEIHa7y9M4ZoJGSaj6zEPucP7PYKfciManqGLxgmcEOGPTpnyGvuW7B9edQThLyJzlmEjrI8QAKTOiO61t74MwjVHhKn5v0v8BpO4xUqnQzAM9OQfuLhF/j8Muzx1wmrmg+LWjZVfNe/Cx+R0frzV+I60/DjUaTSO0TwmzyNEWXW4IAAAAASUVORK5CYII=');
+    }
+    #d_arrow{
+    height: 20px;
+    transition: all .0s ease;
+    margin-top: 3px;
+    }
+    .d_rotate{
+    transform: rotate(180deg);
+    }
+    .d_home_area{
+    width:70px;
+    float:left;
+    }
+    .d_home{
+    height:50px;
+    }
+    .d_icon.d_game{
+    border-radius: 50%;
+    border: solid #131722 medium;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    }
+    .d_games{
+    margin-top:5px;
+    margin-left:65px;
+    }
+    #d_tune_in_msg{
+    font-family: Arial, sans-serif;
+    color: rgb(211, 82, 31);
+    font-weight: bold;
+    padding-top: 35px;
+    text-align: center;
+    opacity: 1;
+    font-size: 20px;
+    transition: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    height: 100px;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+    }
+    .d_tune_in_msg_hide{
+    opacity: 0 !important;
+    }
+    .d_tune_in_msg_remove{
+    display:none;
+    }
+     
+    </style>
+
+<div class="d_msg-box">    
+    <svg id="BkALKXk6G" viewBox="0 0 164 77" style="background-color:transparent;width: 170px;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" x="0px" y="0px"><style>@-webkit-keyframes Syw0ItXJaG_r1MMi716z_Animation{25%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}50%{-webkit-transform: scale(1, 1);transform: scale(1, 1);}75%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}100%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}0%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}}@keyframes Syw0ItXJaG_r1MMi716z_Animation{25%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}50%{-webkit-transform: scale(1, 1);transform: scale(1, 1);}75%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}100%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}0%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}}@-webkit-keyframes Syw0ItXJaG_Animation{25%{opacity: 0;}37.50%{opacity: 1;}87.50%{opacity: 0;}100%{opacity: 0;}0%{opacity: 0;}}@keyframes Syw0ItXJaG_Animation{25%{opacity: 0;}37.50%{opacity: 1;}87.50%{opacity: 0;}100%{opacity: 0;}0%{opacity: 0;}}@-webkit-keyframes SJ80IFmkTM_BJmtcXJ6M_Animation{12.50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}37.50%{-webkit-transform: scale(1, 1);transform: scale(1, 1);}62.50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}87.50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}}@keyframes SJ80IFmkTM_BJmtcXJ6M_Animation{12.50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}37.50%{-webkit-transform: scale(1, 1);transform: scale(1, 1);}62.50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}87.50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}}@-webkit-keyframes SJ80IFmkTM_Animation{12.50%{opacity: 0;}25%{opacity: 1;}75%{opacity: 0;}87.50%{opacity: 0;}}@keyframes SJ80IFmkTM_Animation{12.50%{opacity: 0;}25%{opacity: 1;}75%{opacity: 0;}87.50%{opacity: 0;}}@-webkit-keyframes SkB08tXk6G_ByJkcXk6G_Animation{0%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}25%{-webkit-transform: scale(1, 1);transform: scale(1, 1);}50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}75%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}100%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}}@keyframes SkB08tXk6G_ByJkcXk6G_Animation{0%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}25%{-webkit-transform: scale(1, 1);transform: scale(1, 1);}50%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}75%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}100%{-webkit-transform: scale(0, 0);transform: scale(0, 0);}}@-webkit-keyframes SkB08tXk6G_Animation{0%{opacity: 0;}12.50%{opacity: 1;}62.50%{opacity: 0;}75%{opacity: 0;}100%{opacity: 0;}}@keyframes SkB08tXk6G_Animation{0%{opacity: 0;}12.50%{opacity: 1;}62.50%{opacity: 0;}75%{opacity: 0;}100%{opacity: 0;}}#BkALKXk6G *{-webkit-animation-duration: 2.4s;animation-duration: 2.4s;-webkit-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);animation-timing-function: cubic-bezier(0, 0, 1, 1);}#B17A8YmJ6M{fill: #1d2f7b;}#H1EC8FX1aG{fill: #1d2f7b;}#SkB08tXk6G{fill: #00c1e2;-webkit-animation-name: SkB08tXk6G_Animation;animation-name: SkB08tXk6G_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;opacity: 0;}#SJ80IFmkTM{fill: #f84b76;-webkit-animation-name: SJ80IFmkTM_Animation;animation-name: SJ80IFmkTM_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;opacity: 0;}#Syw0ItXJaG{fill: #32fe78;-webkit-animation-name: Syw0ItXJaG_Animation;animation-name: Syw0ItXJaG_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;opacity: 0;}#SkB08tXk6G_ByJkcXk6G{-webkit-animation-name: SkB08tXk6G_ByJkcXk6G_Animation;animation-name: SkB08tXk6G_ByJkcXk6G_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;-webkit-transform: scale(0, 0);transform: scale(0, 0);}#SJ80IFmkTM_BJmtcXJ6M{-webkit-animation-name: SJ80IFmkTM_BJmtcXJ6M_Animation;animation-name: SJ80IFmkTM_BJmtcXJ6M_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;-webkit-transform: scale(0, 0);transform: scale(0, 0);}#Syw0ItXJaG_r1MMi716z{-webkit-animation-name: Syw0ItXJaG_r1MMi716z_Animation;animation-name: Syw0ItXJaG_r1MMi716z_Animation;-webkit-transform-origin: 50% 50%;transform-origin: 50% 50%;transform-box: fill-box;-webkit-transform: scale(0, 0);transform: scale(0, 0);}</style>
+        <g id="ryxRLY7yTf">
+            <path d="M 31.5 14.4451 C 21.5958 17.9462 14.5 27.3948 14.5 38.5 C 14.5 49.6052 21.5958 59.0538 31.5 62.5549 L 31.5 58.26 C 23.8531 54.9646 18.5 47.3569 18.5 38.5 C 18.5 29.6431 23.8531 22.0354 31.5 18.74 L 31.5 14.4451 Z" id="B17A8YmJ6M"/>
+            <path d="M 132.5 64 C 142.4042 60.4341 149.5 50.8107 149.5 39.5 C 149.5 28.1893 142.4042 18.5659 132.5 15 L 132.5 19.3745 C 140.1469 22.7308 145.5 30.4792 145.5 39.5 C 145.5 48.5208 140.1469 56.2692 132.5 59.6255 L 132.5 64 Z" id="H1EC8FX1aG"/>
+            <g id="SkB08tXk6G_ByJkcXk6G" data-animator-group="true" data-animator-type="2"><path id="SkB08tXk6G" d="M 39.5 38 C 39.5 33.0293 43.5293 29 48.5 29 C 53.4707 29 57.5 33.0293 57.5 38 C 57.5 42.9707 53.4707 47 48.5 47 C 43.5293 47 39.5 42.9707 39.5 38 Z"/></g>
+            <g id="SJ80IFmkTM_BJmtcXJ6M" data-animator-group="true" data-animator-type="2"><path id="SJ80IFmkTM" d="M 73.5 38 C 73.5 33.0293 77.5293 29 82.5 29 C 87.4707 29 91.5 33.0293 91.5 38 C 91.5 42.9707 87.4707 47 82.5 47 C 77.5293 47 73.5 42.9707 73.5 38 Z"/></g>
+            <g id="Syw0ItXJaG_r1MMi716z" data-animator-group="true" data-animator-type="2"><path id="Syw0ItXJaG" d="M 106.5 38 C 106.5 33.0293 110.5293 29 115.5 29 C 120.4707 29 124.5 33.0293 124.5 38 C 124.5 42.9707 120.4707 47 115.5 47 C 110.5293 47 106.5 42.9707 106.5 38 Z"/></g>
+        </g>
+    </svg>            
+    <div class="d_title"><TMPL_VAR NAME=DIZIONARIO_WEBAPP_GAMEPLAY_LOADING_TITLE></div>
+    <div class="d_message"><TMPL_VAR NAME=DIZIONARIO_WEBAPP_GAMEPLAY_LOADING_DESC></div>
+</div>
+
+
+
+<div class="d_navbar d_open">
+    <div class="d_contents">
+        <div class="d_home_area">
+            <img class="d_home" src="data:image/png;base64,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">
+        </div>
+        <div class="d_games">
+            
+            <img class="d_icon d_game" data-gameid="3c2d96833233416f7a538c261dbfe090" data-gametitle="Where's my water 2" data-gametitledefault="Where's my water 2" data-gameurl="http://www.gameasy.it/#!/games/where-s-my-water-2_3c2d96833233416f7a538c261dbfe090" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2019/5/3/3/16/31f64a7e-2b6b-4e6c-b4bb-7a4abf74c253/where-s-my-water-2.bin?v=1558705240"> 
+            <img class="d_icon d_game" data-gameid="17fa7fcd8aef372f3bc6c5c886e4c6c2" data-gametitle="DuckTales: Remastered!" data-gametitledefault="DuckTales: Remastered!" data-gameurl="http://www.gameasy.it/#!/games/ducktales-remastered_17fa7fcd8aef372f3bc6c5c886e4c6c2" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2019/5/3/6/31/9c58764e-742a-4722-92e0-96b97531be2e/ducktales-remastered.bin?v=1558955746">
+            <img class="d_icon d_game" data-gameid="a3b06c208abd7150bd9affdeee68267f" data-gametitle="Cinderella Free Fall" data-gametitledefault="Cinderella Free Fall" data-gameurl="http://www.gameasy.it/#!/games/cinderella-free-fall_a3b06c208abd7150bd9affdeee68267f" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2019/5/3/0/16/bb7cee18-1bfd-4a2f-b2e4-d4a5889b661a/cinderella-free-fall.bin?v=1558360671">
+            <img class="d_icon d_game" data-gameid="b5c5326e720ddd1d6698a72f6b5873e8" data-gametitle="Frozen Free Fall - Icy Shot" data-gametitledefault="Frozen Free Fall - Icy Shot" data-gameurl="http://www.gameasy.it/#!/games/frozen-free-fall-icy-shot_b5c5326e720ddd1d6698a72f6b5873e8" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2019/5/2/21/46/fbf9c102-0f3f-442c-9d66-54f69f45e0ec/frozen-free-fall-icy-shot.bin?v=1558708144">
+            <img class="d_icon d_game" data-gameid="6bae59ee2706b7a52591a3830ffc2e23" data-gametitle="Topolino e Minni in giro per il mondo" data-gametitledefault="Mickey & Minnie's Universe" data-gameurl="http://www.gameasy.it/#!/games/topolino-e-minni-in-giro-per-il-mondo_6bae59ee2706b7a52591a3830ffc2e23" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/28/15/9/5b5d7f86-6f97-47b9-844d-25ee41486122/topolino-e-minni-in-giro-per-il-mondo.bin?v=1558950297">
+            <img class="d_icon d_game" data-gameid="bc98cb231bf0f64a45ff8de2893fc727" data-gametitle="La mia sfilata di moda" data-gametitledefault="My Fashion Roadshow" data-gameurl="http://www.gameasy.it/#!/games/la-mia-sfilata-di-moda_bc98cb231bf0f64a45ff8de2893fc727" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/21/11/57/1ad94893-cdf4-4765-909c-3a5f06bc8621/la-mia-sfilata-di-moda.bin?v=1558707918">
+            <img class="d_icon d_game" data-gameid="6a9f7bbc87173ffa7d768f3b47f81304" data-gametitle="Star Wars Arcade" data-gametitledefault="Star Wars Arcade" data-gameurl="http://www.gameasy.it/#!/games/star-wars-arcade_6a9f7bbc87173ffa7d768f3b47f81304" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/28/14/26/895330f0-c244-4756-a352-bab8b97a2904/star-wars-arcade.bin?v=1558956279">
+            <img class="d_icon d_game" data-gameid="cc0e8169bf704ca1a1f7be79e03c3ab8" data-gametitle="Zootropolis: Crime Files" data-gametitledefault="Zootropolis: Crime Files" data-gameurl="http://www.gameasy.it/#!/games/zootropolis-crime-files_cc0e8169bf704ca1a1f7be79e03c3ab8" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2019/5/2/17/32/31772015-20da-4ddf-afeb-8f8bde72a707/zootropolis-crime-files.bin?v=1558955924">
+            <img class="d_icon d_game" data-gameid="ef7f06e89ba4ad8014bf6595e2f07e9e" data-gametitle="Disney Junior Play" data-gametitledefault="Disney Junior Play" data-gameurl="http://www.gameasy.it/#!/games/disney-junior-play_ef7f06e89ba4ad8014bf6595e2f07e9e" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2019/5/3/6/1/69879aec-7ecc-4981-bb08-137a2b14a1ad/disney-junior-play.bin?v=1558360352">
+            <img class="d_icon d_game" data-gameid="d74ad4b1c5cfef764cbd3c2c8d166f3c" data-gametitle="Frozen Rush" data-gametitledefault="Frozen Rush" data-gameurl="http://www.gameasy.it/#!/games/frozen-rush_d74ad4b1c5cfef764cbd3c2c8d166f3c" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/7/15/20/3843d95c-34fb-42e8-ae44-490532a12562/frozen-rush.bin?v=1558360312">
+            <img class="d_icon d_game" data-gameid="e0e6bf9b34d2aacfeeecc32254802d44" data-gametitle="Lâ€™adunata Della: Adunata" data-gametitledefault="The Lion Guard: Assemble" data-gameurl="http://www.gameasy.it/#!/games/l-adunata-della-adunata_e0e6bf9b34d2aacfeeecc32254802d44" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/7/12/15/ec5b33ee-1447-45d8-a840-2f5dc249f228/l-adunata-della-adunata.bin?v=1558360347">
+            <img class="d_icon d_game" data-gameid="010533123334be3a49a165c73eaca664" data-gametitle="Cattura creature" data-gametitledefault="Creature Capture â€“ Star vs. the Forces of Evil" data-gameurl="http://www.gameasy.it/#!/games/cattura-creature_010533123334be3a49a165c73eaca664" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/2/14/52/2b494e52-89e6-4e00-ab33-54603de67309/cattura-creature.bin?v=1558360682">
+            <img class="d_icon d_game" data-gameid="31fe20adc29ba5b4ad32262bad842718" data-gametitle="Scrawl and Brawl" data-gametitledefault="Scrawl and Brawl" data-gameurl="http://www.gameasy.it/#!/games/scrawl-and-brawl_31fe20adc29ba5b4ad32262bad842718" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/2/14/54/758b8612-6ec3-4e15-bcd8-3ecbd35acc13/scrawl-and-brawl.bin?v=1558360421">
+            <img class="d_icon d_game" data-gameid="097b98ae418825d76810243e364ea49a" data-gametitle="Descendants: Moda Smart" data-gametitledefault="Descendants: Smarte Couture" data-gameurl="http://www.gameasy.it/#!/games/descendants-moda-smart_097b98ae418825d76810243e364ea49a" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/7/12/10/e2b1319c-66aa-4403-9579-650e688bea8b/descendants-moda-smart.bin?v=1558446209">
+            <img class="d_icon d_game" data-gameid="0deae1c20053453a359b4ad79a438ee1" data-gametitle="Roller Pop" data-gametitledefault="Roller Pop" data-gameurl="http://www.gameasy.it/#!/games/roller-pop_0deae1c20053453a359b4ad79a438ee1" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/7/11/58/e7705cc5-b34e-416c-9c22-583c06f944c3/roller-pop.bin?v=1558619318">
+            <img class="d_icon d_game" data-gameid="d2ad702da651040f18c69419eb9b8d7f" data-gametitle="Oddventure Land" data-gametitledefault="Oddventure Land" data-gameurl="http://www.gameasy.it/#!/games/oddventure-land_d2ad702da651040f18c69419eb9b8d7f" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/2/14/53/8ad24f9c-e214-4838-a006-3f18d8188618/oddventure-land.bin?v=1558955578">
+            <img class="d_icon d_game" data-gameid="69f683581c6efb857210e32aec655f59" data-gametitle="Lightning Speed" data-gametitledefault="Lightning Speed" data-gameurl="http://www.gameasy.it/#!/games/lightning-speed_69f683581c6efb857210e32aec655f59" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/1/16/5/421ee06b-fb09-4494-9791-d12aba6c8591/lightning-speed.bin?v=1558951925">
+            <img class="d_icon d_game" data-gameid="b54d814c4b6a944e9a6102d10b647a89" data-gametitle="Hydro Frenzy" data-gametitledefault="Hydro Frenzy" data-gameurl="http://www.gameasy.it/#!/games/hydro-frenzy_b54d814c4b6a944e9a6102d10b647a89" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/1/10/50/b9237bf5-1e0d-487a-969a-ad628373deed/hydro-frenzy.bin?v=1558360257">
+            <img class="d_icon d_game" data-gameid="29771f96d0d45541b1995fa1a6dc7293" data-gametitle="Hopps Pursuit" data-gametitledefault="Hopps Pursuit" data-gameurl="http://www.gameasy.it/#!/games/hopps-pursuit_29771f96d0d45541b1995fa1a6dc7293" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/1/29/9/17/fa8d8316-fb7b-4029-862b-d971e54066e7/hopps-pursuit.bin?v=1558359706">
+            <img class="d_icon d_game" data-gameid="9c7cc7e8ac8993b383d5fc2c40b37a33" data-gametitle="Descendants - Isle of the Lost Rush" data-gametitledefault="Descendants - Isle of the Lost Rush" data-gameurl="http://www.gameasy.it/#!/games/descendants-isle-of-the-lost-rush_9c7cc7e8ac8993b383d5fc2c40b37a33" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/1/16/5/7ef0aa21-267c-4c6b-8c52-ada980e9ea13/descendants-isle-of-the-lost-rush.bin?v=1558708577">
+            <img class="d_icon d_game" data-gameid="82df304c09e207be84f4c35c57a680cf" data-gametitle="Mabel's Doodleblaster" data-gametitledefault="Mabel's Doodleblaster" data-gameurl="http://www.gameasy.it/#!/games/mabel-s-doodleblaster_82df304c09e207be84f4c35c57a680cf" src="http://www.gameasy.it/static_env/p/bcontents/absimageapp1/h0/w216/xx_gameasy/mnt/alfresco_content_prod/contentstore/2018/2/1/16/13/edda9ce5-d307-4532-9c6a-2e9e95eceff0/mabel-s-doodleblaster.bin?v=1558956809">
+        </div>
+    </div>
+    <div class="d_arrow_area">
+        <img id="d_arrow" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+LnN0MHtmaWxsOiNGN0Y3Rjc7fTwvc3R5bGU+PGcgdHJhbnNmb3JtPSJtYXRyaXgoIDEsIDAsIDAsIDEsIDAsMCkgIj48Zz48ZyBpZD0iTGF5ZXIwXzBfRklMTCI+PHBhdGggY2xhc3M9InN0MCIgZD0iTTEzLjUsMTg1LjljLTUuMSwyLjEtOC45LDUuNy0xMS4xLDEwLjdjLTIuMiw1LTIuMywxMC0wLjQsMTUuMWMyLjEsNS4xLDUuNyw4LjgsMTAuNywxMS4xbDIzNS44LDEwMy42YzIuNSwxLjEsNS4yLDEuNiw3LjksMS42YzIuNywwLDUuNC0wLjcsNy45LTJsMjM1LjgtMTAzLjZjNS0yLjEsOC41LTUuNywxMC4zLTEwLjdjMi4xLTUuMSwyLTEwLjEtMC40LTE1LjFjLTIuMS01LTUuNi04LjYtMTAuNy0xMC43Yy01LjEtMS44LTEwLjEtMS43LTE1LjEsMC40bC0yMjcuOSwxMDBsLTIyNy45LTEwMEMyMy42LDE4NC4xLDE4LjUsMTg0LDEzLjUsMTg1Ljl6Ii8+PC9nPjwvZz48L2c+PC9zdmc+">
+    </div>     
+</div>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga_game');
+</script>
+
+<script>
+    Gamebox.config.init({ data: window.GFSDK_CONFIG });
+
+    // init Game module
+    Gamebox.gameinfo.init({ data: window.GamifiveInfo });
+    // init Alert module
+    Gamebox.alert.init();
+    // init Navbar module
+    Gamebox.navbar.init();
+    // init GA module
+    Gamebox.ga.init();
+    // init Newton module
+    Gamebox.newton.init();
+</script>

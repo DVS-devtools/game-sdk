@@ -19,6 +19,7 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 app.listen(config.generic.port, function () {
   console.log('SDK-DEV-ENV running: http://'+config.generic.local_domain+':'+config.generic.port);
+  console.log('Mode: '+(process.env.MODE || 'SDK'));
 })
 
 var proxier = proxy(config.generic.domain, {
@@ -64,6 +65,7 @@ app.get('/', function (req, res) {
 
   var dirSamples = path.join(__dirname, 'public/games');
   var games=[];
+  const mode = process.env.MODE || 'SDK';
 
   fs.readdir(dirSamples, function (err, files) {
     
@@ -77,7 +79,7 @@ app.get('/', function (req, res) {
       }
     })
 
-    res.render('index', {games: games, config: config})
+    res.render('index', {games: games, config: config, mode: mode})
   });
 
 })
@@ -121,13 +123,31 @@ app.get('/run/:game', function (req, res) {
 
           if(typeof data !=='undefined'){
             var headTagPos=data.indexOf('<head>')+6;
-            data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.GFSDK_MANIFEST_URL+'"></script><script src="'+config.vhost.GFSDK_VENDOR_URL+'"></script></script><script src="'+config.vhost.GFSDK_MAIN_URL+'"></script>' + data.slice(headTagPos);
+            var bodyTagPos=data.indexOf('</body>');
+            
+            if (process.env.MODE == "gamebox") {
+
+              fs.readFile(path.join(__dirname, 'partials/gamebox.html'), 'utf8', function(err, gbdata) {
+                data=data.slice(0, bodyTagPos) + gbdata + data.slice(bodyTagPos);
+                data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.HEADER_JS_GAMEBOX_INDEX+'"></script>' + data.slice(headTagPos);
+
+                res.format({
+                  html: function(){
+                    res.send(data);
+                  },
+                });
+              });
+            
+            } else {
+              data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.GFSDK_MANIFEST_URL+'"></script><script src="'+config.vhost.GFSDK_VENDOR_URL+'"></script></script><script src="'+config.vhost.GFSDK_MAIN_URL+'"></script>' + data.slice(headTagPos);
+              res.format({
+                html: function(){
+                  res.send(data);
+                },
+              });
+            }
         
-            res.format({
-              html: function(){
-                res.send(data);
-              },
-            });
+            
           } else {
             console.log('path file not found: '+path.join(__dirname, 'public/games/'+req.params.game+'/index.html'))
           }
