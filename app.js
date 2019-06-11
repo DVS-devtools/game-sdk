@@ -122,7 +122,7 @@ app.get('/run/:game', function (req, res) {
         fs.readFile(path.join(__dirname, 'public/games/'+req.params.game+'/index.html'), 'utf8', function(err, data) {
 
           if(typeof data !=='undefined'){
-            var headTag=data.match(/<head.+?>/i);
+            var headTag=data.match(/<head.*?>/i);
             var headTagPos=data.indexOf(headTag[0])+headTag[0].length;
             var bodyTagPos=data.indexOf('</body>');
             
