@@ -130,7 +130,7 @@ app.get('/run/:game', function (req, res) {
 
               fs.readFile(path.join(__dirname, 'partials/gamebox.html'), 'utf8', function(err, gbdata) {
                 data=data.slice(0, bodyTagPos) + gbdata + data.slice(bodyTagPos);
-                data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'",game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.HEADER_JS_GAMEBOX_INDEX+'"></script>' + data.slice(headTagPos);
+                data=data.slice(0, headTagPos) + '<base href="/games/'+req.params.game+'/"><script src="'+config.generic.newton+'"></script><script>var GFSDK_CONFIG = '+JSON.stringify(config.vhost)+';var GFSDK_DICTIONARY = '+JSON.stringify(config.dictionary)+';var GamifiveInfo = {userId:"'+config.user.id+'", user: {"userId":"f6d008d400f311e8b236005056b60718","userType":"premium","session_id":null,"fbUserId":null,"fbConnected":false,"userFreemium":false,"nickname":"gianni","avatar":{"src":"http:\/\/www.gameasy.it\/static_env\/img\/wl\/webstore_html5game\/images\/avatar\/big\/avatar_015.png?v=20190704130606","name":"avatar_015.png"}}, game:'+JSON.stringify(game.data)+'}</script><script src="'+config.vhost.HEADER_JS_GAMEBOX_INDEX+'"></script>' + data.slice(headTagPos);
 
                 res.format({
                   html: function(){
