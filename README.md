@@ -103,9 +103,28 @@ GamifiveSDK.showMoreGamesButton('TOP_LEFT')//'BOTTOM_RIGHT', 'TOP_RIGHT', 'BOTTO
 GamifiveSDK.hideMoreGamesButton();
 ```
 
+# While testing
+
+Inside index file remove/comment the line below if present:
+
+<script id="gfsdk" src="http://s.motime.com/js/wl/webstore_html5game/gfsdk/dist/gfsdk.min.js"></script>
+
+Our SDK integration calls can be anywhere in the code at the specific event (Game Start, Game Over, Game Pause, etc)
+The init and the load should be inside the index file but this is up to your code. Here is the list of our calls:
+
+```javascript
+GamifiveSDK.init({ lite: true, menuPosition: 'TOP_LEFT' });
+GamifiveSDK.loadUserData(function(resp) {});
+GamifiveSDK.hideMoreGamesButton(); 
+GamifiveSDK.startSession();
+GamifiveSDK.showMoreGamesButton();
+GamifiveSDK.saveUserData({ 'score' : score_var, 'level' : level_var });
+GamifiveSDK.endSession({ 'score' : score_var, 'level' : level_var });
+```
+
 # Before sending
 
-Before sending the package just remove from the index.html the two scripts needed for testing purpose and include only this tag in your head
+Before sending the package just put this tag in your head
 
 ```javascript
 <script id="gfsdk" src="http://s.motime.com/js/wl/webstore_html5game/gfsdk/dist/gfsdk.min.js"></script>
