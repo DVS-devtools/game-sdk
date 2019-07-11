@@ -107,7 +107,9 @@ GamifiveSDK.hideMoreGamesButton();
 
 Inside index file remove/comment the line below if present:
 
+```javascript
 <script id="gfsdk" src="http://s.motime.com/js/wl/webstore_html5game/gfsdk/dist/gfsdk.min.js"></script>
+```
 
 Our SDK integration calls can be anywhere in the code at the specific event (Game Start, Game Over, Game Pause, etc)
 The init and the load should be inside the index file but this is up to your code. Here is the list of our calls:
